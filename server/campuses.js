@@ -32,6 +32,11 @@ router.get('/:campusId', (req, res, next) => {
 		.catch(next);
 });
 
+//POST /api/add/campus
+router.post('/campus', (req, res, next) => {
+	Campus.create(req.body).then(newCampus => res.send(newCampus)).catch(next);
+});
+
 // DELETE api/campuses/:campusId
 router.delete('/:campusId', (req, res, next) => {
 	req.requestedCampus
@@ -41,6 +46,17 @@ router.delete('/:campusId', (req, res, next) => {
 		})
 		.then(campus => {
 			res.status(204).end();
+		})
+		.catch(next);
+});
+
+// PUT api/edit/campuses/:id
+router.put('/campuses/:campusId', (req, res, next) => {
+	req.requestedCampus
+		.then(campus => {
+			if (!campus) throw HttpError(404);
+			campus.update(req.body);
+			res.send(campus);
 		})
 		.catch(next);
 });
