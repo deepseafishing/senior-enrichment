@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeStudent } from '../redux/students';
 
@@ -8,7 +8,6 @@ import { removeStudent } from '../redux/students';
 class StudentList extends React.Component {
   constructor(props) {
     super(props);
-
     this.removeStudent = this.removeStudent.bind(this);
   }
 

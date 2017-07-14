@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 /* -----------------    COMPONENT     ------------------ */
 
 function CampusList(props) {
-  const campuses = props.campuses;
+  const campuses = props.campuses.campuses;
 
   return (
     <div>
@@ -17,7 +17,7 @@ function CampusList(props) {
         {campuses &&
           campuses.map(campus =>
             <div className="col-xs-4" key={campus.id}>
-              <Link className="thumbnail" to={`campuses/${campus.id}`}>
+              <Link className="thumbnail" to={`/campuses/${campus.id}`}>
                 <img src={campus.image} />
                 <div className="caption">
                   <h3>

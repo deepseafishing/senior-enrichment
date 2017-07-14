@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route, hashHistory, browserHistory } from 'react-router';
-import { Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './components/Main';
 import StudentList from './components/StudentList';
 import CampusList from './components/CampusList';
-import NewCampusEntry from './components/NewCampusEntry';
+import Campus from './components/Campus';
 
 import { fetchStudents } from './redux/students';
 import { fetchCampuses } from './redux/campuses';
@@ -19,12 +18,12 @@ class Routes extends Component {
 
   render() {
     return (
-      <Router history={hashHistory}>
+      <Router>
         <div>
           <Switch>
             <Route exact path="/" component={Main} />
-            <Route path="/campuses" component={CampusList} />
-            <Route path="/campuses/:campusId" component={StudentList} />
+            <Route exact path="/campuses" component={CampusList} />
+            <Route path="/campuses/:campusId" component={Campus} />
             <Route path="/students" component={StudentList} />
             {
               // <Route exact path="/add/campus" component={NewCampusEntry} />
