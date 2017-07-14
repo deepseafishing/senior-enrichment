@@ -24,10 +24,14 @@ router.get('/', (req, res, next) => {
 });
 
 // GET api/campuses/:campusId
-router.get('/:campusId', (req, res, next) => {
-	req.requestedCampus
-		.then(campus => {
-			res.json(campus);
+router.get('/:id', (req, res, next) => {
+	Student.findAll({
+		where: {
+			campusId: req.params.campusId
+		}
+	})
+		.then(students => {
+			res.json(students);
 		})
 		.catch(next);
 });
@@ -35,19 +39,6 @@ router.get('/:campusId', (req, res, next) => {
 //POST /api/add/campus
 router.post('/campus', (req, res, next) => {
 	Campus.create(req.body).then(newCampus => res.send(newCampus)).catch(next);
-});
-
-// DELETE api/campuses/:campusId
-router.delete('/:campusId', (req, res, next) => {
-	req.requestedCampus
-		.then(campus => {
-			if (campus) return campus.destroy();
-			else res.status(404).end();
-		})
-		.then(campus => {
-			res.status(204).end();
-		})
-		.catch(next);
 });
 
 // PUT api/edit/campuses/:id

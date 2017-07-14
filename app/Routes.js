@@ -1,66 +1,52 @@
 import React, { Component } from 'react';
-import {
-  Router,
-  Route,
-  hashHistory,
-  IndexRedirect,
-  IndexRoute
-} from 'react-router';
+import { connect } from 'react-redux';
+import { Router, Route, hashHistory, browserHistory } from 'react-router';
+import { Switch } from 'react-router-dom';
+import Main from './components/Main';
+import StudentList from './components/StudentList';
+import CampusList from './components/CampusList';
+import NewCampusEntry from './components/NewCampusEntry';
 
-import axios from 'axios';
-import store from './store';
-import Home from './components/Home';
-import CampusesContainer from './containers/CampusesContainer';
-import CampusContainer from './containers/CampusContainer';
-import AddCampusContainer from './containers/AddCampusContainer';
-import StudentsContainer from './containers/StudentsContainer';
-import StudentContainer from './containers/StudentContainer';
+import { fetchStudents } from './redux/students';
+import { fetchCampuses } from './redux/campuses';
 
-import { receiveCampuses, getCampusById } from './action-creators/campuses';
-import { receiveStudents, getStudentById } from './action-creators/students';
+/* -----------------    COMPONENT     ------------------ */
 
-function onHomeEnter() {
-  const gettingCampuses = axios.get('/api/campuses');
-  const gettingStudents = axios.get('/api/students');
+class Routes extends Component {
+  componentDidMount() {
+    this.props.fetchInitialData();
+  }
 
-  return Promise.all([gettingCampuses, gettingStudents])
-    .then(res => res.map(r => r.data))
-    .then(([campuses, students]) => {
-      store.dispatch(receiveCampuses(campuses));
-      store.dispatch(receiveStudents(students));
-    })
-    .catch(err => console.log(err));
+  render() {
+    return (
+      <Router history={hashHistory}>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/campuses" component={CampusList} />
+            <Route path="/campuses/:campusId" component={StudentList} />
+            <Route path="/students" component={StudentList} />
+            {
+              // <Route exact path="/add/campus" component={NewCampusEntry} />
+              // <Route exact path="/students/:studentId" component={Stud
+            }
+            <Route component={Main} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-function onCampusEnter(nextRouterState) {
-  const campusId = nextRouterState.params.campusId;
-  store.dispatch(getCampusById(campusId));
-}
+/* -----------------    CONTAINER     ------------------ */
 
-function onStudentEnter(nextRouterState) {
-  const studentId = nextRouterState.params.studentId;
-  store.dispatch(getStudentById(studentId));
-}
+const mapProps = null;
 
-export default function Root() {
-  return (
-    <Router history={hashHistory}>
-      <Switch>
-        <Route path="/" component={Home} onEnter={onHomeEnter} />
-        <Route exact path="/campuses" component={CampusesContainer} />
-        <Route
-          path="/campuses/:campusId"
-          component={CampusContainer}
-          onEnter={onCampusEnter}
-        />
-        <Route path="/add/campus" component={AddCampusContainer} />
-        <Route path="/students" component={StudentsContainer} />
-        <Route
-          path="/students/:studentId"
-          component={StudentContainer}
-          onEnter={onStudentEnter}
-        />
-      </Switch>
-    </Router>
-  );
-}
+const mapDispatch = dispatch => ({
+  fetchInitialData: () => {
+    dispatch(fetchStudents());
+    dispatch(fetchCampuses());
+  }
+});
+
+export default connect(mapProps, mapDispatch)(Routes);

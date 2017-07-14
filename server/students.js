@@ -40,4 +40,18 @@ router.get('/:studentId', (req, res, next) => {
 		.catch(next);
 });
 
+router.delete('/:studentId', (req, res, next) => {
+	Student.findById(req.params.studentId)
+		.then(student => {
+			if (student) return student.destroy();
+			else res.status(404).end();
+		})
+		.then(() => {
+			Student.findAll().then(students => {
+				res.status(200).send(students);
+			});
+		})
+		.catch(next);
+});
+
 module.exports = router;
