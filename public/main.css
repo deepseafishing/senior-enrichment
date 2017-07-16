@@ -1,0 +1,30 @@
+/* navigator*/
+.nav-wrapper {
+	background-color: #d3161d;
+}
+
+/* main page */
+image {
+	width: 50%;
+	height: 800px;
+}
+.classImage {
+	width: 23%;
+	display: inline-block;
+}
+
+/* Campus List */
+.campus-list {
+	display: flex;
+	align-items: baseline;
+}
+
+/* Student List */
+.row.add-student {
+	margin-bottom: 0;
+}
+.list-group {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
