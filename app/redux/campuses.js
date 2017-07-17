@@ -8,6 +8,7 @@ const initialState = {
 
 const INITIALIZE = 'INITIALIZE_CAMPUSES';
 const GET_CAMPUS = 'GET_CAMPUS';
+
 /* ------------   ACTION CREATORS     ------------------ */
 
 const init = campuses => ({ type: INITIALIZE, campuses });

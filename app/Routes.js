@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './components/Main';
 import StudentList from './components/StudentList';
+import Navigator from './components/Navigator';
 import CampusList from './components/CampusList';
 import Campus from './components/Campus';
-
 import { fetchStudents } from './redux/students';
 import { fetchCampuses } from './redux/campuses';
 
@@ -20,6 +20,7 @@ class Routes extends Component {
     return (
       <Router>
         <div>
+          <Navigator />
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/campuses" component={CampusList} />

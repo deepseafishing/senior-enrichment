@@ -5,7 +5,6 @@ const router = new express.Router();
 const models = require('../db/models');
 const Campus = models.Campus;
 const Student = models.Student;
-const HttpError = require('./HttpError');
 
 // GET /api/students/:params
 // router.param('campusId', (req, res, next, campusId) => {
@@ -26,7 +25,7 @@ router.get('/', (req, res, next) => {
 
 // GET api/campuses/:campusId
 router.get('/:campusId', (req, res, next) => {
-	Campus.findAll({
+	Campus.findOne({
 		where: { id: req.params.campusId },
 		include: [Student]
 	})

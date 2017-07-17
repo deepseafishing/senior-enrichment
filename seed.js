@@ -5,36 +5,36 @@ const Bluebird = require('bluebird');
 
 const campuses = [
   {
-    name: 'SHOHOKU14',
+    name: 'SHOHOKU4',
     image:
-      'https://mblogthumb-phinf.pstatic.net/20110223_63/solsolbee_1298466378308zahvM_JPEG/8.jpg?type=w2'
+      'https://mblogthumb-phinf.pstatic.net/20131001_58/vipolice_1380634630983GQThN_JPEG/4.jpg?type=w2'
   },
   {
     name: 'SHOHOKU11',
     image:
-      'https://mblogthumb-phinf.pstatic.net/20110223_192/solsolbee_1298466376070kTvE0_JPEG/pimg_759069163111389.jpg?type=w2'
-  },
-  {
-    name: 'SHOHOKU10',
-    image:
-      'https://mblogthumb-phinf.pstatic.net/20110223_196/solsolbee_1298466376520Kw7vV_JPEG/1.jpg?type=w210@2x'
+      'https://mblogthumb-phinf.pstatic.net/20131001_141/vipolice_1380634630069vEU4q_JPEG/1.jpg?type=w2'
   },
   {
     name: 'SHOHOKU7',
     image:
-      'https://mblogthumb-phinf.pstatic.net/20110223_261/solsolbee_1298471936941GKr0I_JPEG/naver_net_20110223_224528.jpg?type=w210@2x'
+      'https://mblogthumb-phinf.pstatic.net/20131001_115/vipolice_1380634630362o6LGH_JPEG/5.jpg?type=w2'
+  },
+  {
+    name: 'SHOHOKU14',
+    image:
+      'https://mblogthumb-phinf.pstatic.net/20131001_284/vipolice_1380634630682vEymR_JPEG/3.jpg?type=w2'
   }
 ];
 
 const students = [
   { name: 'Takenori', email: 'takenori@shohoku.com', campusId: 1 },
   { name: 'Hanamichi', email: 'hanamichi@shohoku.com', campusId: 2 },
-  { name: 'Hisashi', email: 'hisashi@shohoku.com', campusId: 3 },
-  { name: 'Ryota', email: 'ryota@shohoku.com', campusId: 4 },
-  { name: 'Yasuharu', email: 'yasuharu@shohoku.com', campusId: 4 },
+  { name: 'Hisashi', email: 'hisashi@shohoku.com', campusId: 2 },
+  { name: 'Ryota', email: 'ryota@shohoku.com', campusId: 3 },
+  { name: 'Yasuharu', email: 'yasuharu@shohoku.com', campusId: 3 },
   { name: 'Mitsuyoshi', email: 'mitsuyoshi@shohoku.com', campusId: 3 },
-  { name: 'Kiminobu', email: 'kiminobu@shohoku.com', campusId: 2 },
-  { name: 'Kaede', email: 'kaede@shohoku.com', campusId: 1 }
+  { name: 'Kiminobu', email: 'kiminobu@shohoku.com', campusId: 4 },
+  { name: 'Kaede', email: 'kaede@shohoku.com', campusId: 4 }
 ];
 
 db.didSync
@@ -55,4 +55,3 @@ db.didSync
     console.log('connection closed');
     return null;
   });
-

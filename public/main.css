@@ -28,3 +28,6 @@ image {
 	align-items: center;
 	flex-direction: column;
 }
+select {
+	display: block;
+}
