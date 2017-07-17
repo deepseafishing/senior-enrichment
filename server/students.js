@@ -57,8 +57,6 @@ router.delete('/:studentId', (req, res, next) => {
 		}
 	})
 		.then(() => {
-			console.log('database delete student works?');
-
 			res.status(204).end();
 		})
 		.catch(next);

@@ -35,4 +35,17 @@ router.get('/:campusId', (req, res, next) => {
 		.catch(next);
 });
 
+// DELETE /api/campuses/:campusId
+router.delete('/:campusId', (req, res, next) => {
+	Campus.destroy({
+		where: {
+			id: req.params.campusId
+		}
+	})
+		.then(() => {
+			res.status(204).end();
+		})
+		.catch(next);
+});
+
 module.exports = router;
