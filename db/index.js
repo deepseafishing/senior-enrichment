@@ -46,4 +46,4 @@ function sync(force = false, retries = 0, maxRetries = 5) {
     });
 }
 
-db.didSync = sync(true);
+db.didSync = sync();

@@ -10,17 +10,16 @@ class StudentList extends React.Component {
     this.state = {
       name: '',
       email: '',
-      campus: null
+      campusId: ''
     };
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target.campus.value);
     const student = {
       name: event.target.name.value,
       email: event.target.email.value,
-      campus: event.target.campus.value
+      campusId: event.target.campus.value
     };
     this.props.addStudent(student);
     // clear the inputs
